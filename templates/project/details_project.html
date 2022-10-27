@@ -24,14 +24,16 @@
                 </tr>
                 </thead>
                 <tbody>
-{#                aici un for #}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+{#                {% for all_tasks in data %}  aici am ramas#}
+                    <tr>
+                    <td>{{ all_tasks.name }}</td>
+                    <td>{{ all_tasks.status }}</td>
+                    <td>{{ all_tasks.start_date }}</td>
+                    <td>{{ all_tasks.deadline }}</td>
+                    <td>{{ all_tasks.assignees }}</td>
                 </tr>
+{#                {% endfor %}#}
+
                 </tbody>
             </table>
 

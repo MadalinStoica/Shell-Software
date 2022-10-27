@@ -35,11 +35,10 @@ def delete_project_modal(request, pk):
 class ProjectDetailView(DetailView):
     template_name = 'project/details_project.html'
     model = Project
-    # context_object_name = Task.objects.get(project_id =  )
 
-    # def get_context_data(self, **kwargs):
-    #     data = super(ProjectDetailView, self).get_context_data(**kwargs)
-    #     tasks = Task.objects.all()
-    #     data['all_tasks'] = tasks
-    #
-    #     return data
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        tasks = Task.objects.all().filter(project_id=data['project'].id)
+        data['all_tasks'] = tasks
+        print(data)
+        return data

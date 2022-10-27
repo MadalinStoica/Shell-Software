@@ -21,5 +21,7 @@ urlpatterns = [
     path('', include('member.urls')),
     path('', include('customer.urls')),
     path('', include('project.urls')),
-    path('', include('task.urls'))
+    path('', include('task.urls')),
+    path('', include('django.contrib.auth.urls')),
+    path('', include('userextend.urls'))
 ]
