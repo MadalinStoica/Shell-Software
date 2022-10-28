@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Task -  {% endblock %}
+{% block title %} Tasks   {% endblock %}
 
 
 {% block content %}
@@ -13,6 +13,7 @@
         </div>
     <div class="row">
         <div class="col-md-10 offset-md-1">
+        <br> <br>
             <table class="table table-stripped">
                 <thead>
                 <tr>
@@ -24,15 +25,15 @@
                 </tr>
                 </thead>
                 <tbody>
-{#                {% for all_tasks in data %}  aici am ramas#}
+                {% for task in all_tasks %}
                     <tr>
-                    <td>{{ all_tasks.name }}</td>
-                    <td>{{ all_tasks.status }}</td>
-                    <td>{{ all_tasks.start_date }}</td>
-                    <td>{{ all_tasks.deadline }}</td>
-                    <td>{{ all_tasks.assignees }}</td>
+                    <td>{{ task.task_name }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.start_date }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.assignees }}</td>
                 </tr>
-{#                {% endfor %}#}
+                {% endfor %}
 
                 </tbody>
             </table>
