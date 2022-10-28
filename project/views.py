@@ -40,5 +40,4 @@ class ProjectDetailView(DetailView):
         data = super().get_context_data(**kwargs)
         tasks = Task.objects.all().filter(project_id=data['project'].id)
         data['all_tasks'] = tasks
-        print(data)
         return data
