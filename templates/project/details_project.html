@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Tasks   {% endblock %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-5">
+            <br><br>
+            <a class="btn btn-primary" href="{% url 'new-task-project' project.id %}">New task</a>
+        </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+        <br> <br>
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Start date</th>
+                    <th>Deadline</th>
+                    <th>Assigned to</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in all_tasks %}
+                    <tr>
+                    <td>{{ task.task_name }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.start_date }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.assignees }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

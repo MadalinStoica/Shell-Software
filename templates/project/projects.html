@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %} Projects {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-5">
+                <br> <br>
+                <a class="btn btn-primary" href="{% url 'new-project' %}" role="button">New project</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <br><br>
+                <table class="table table-stripped">
+                    <thead>
+                    <tr>
+                        <th>Project name</th>
+                        <th>Customer</th>
+                        <th>Start date</th>
+                        <th>Deadline</th>
+                        <th>Estimated hours</th>
+                        <th>Members</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project in all_projects %}
+                        <tr>
+                            <td>{{ project.project_name }}</td>
+                            <td>{{ project.customer }}</td>
+                            <td>{{ project.start_date|date:"d/m/Y" }}</td>
+                            <td>{{ project.deadline|date:"d/m/Y" }}</td>
+                            <td>{{ project.estimated_hours }}</td>
+                            <td>{{ project.members }}</td>
+                            <td>{{ project.status }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                               href="{% url 'update-project' project.id %}">Edit</a></li>
+                                        <!-- Trigger Modal -->
+                                        <li>
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#project_{{ project.id }}">
+                                                Delete
+                                            </button>
+                                        </li>
+                                        <li><a class="dropdown-item" href="{% url 'details_project' project.id %}">View details</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="project_{{ project.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete - {{ project.project_name }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure to delete - {{ project.project_name }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No
+                                        </button>
+                                        <a href="{% url 'delete-project-modal' project.id %}" class="btn btn-danger">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
