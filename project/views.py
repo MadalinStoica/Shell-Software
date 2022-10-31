@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DetailView
@@ -7,20 +8,20 @@ from project.models import Project
 from task.models import Task
 
 
-class NewProjectCreateView(CreateView):
+class NewProjectCreateView(LoginRequiredMixin, CreateView):
     template_name = 'project/new_project.html'
     model = Project
     form_class = NewProjectForm
     success_url = reverse_lazy('projects')
 
 
-class ProjectsListView(ListView):
+class ProjectsListView(LoginRequiredMixin, ListView):
     template_name = 'project/projects.html'
     model = Project
     context_object_name = 'all_projects'
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'project/update_project.html'
     model = Project
     form_class = NewProjectForm
@@ -32,7 +33,7 @@ def delete_project_modal(request, pk):
     return redirect('projects')
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(LoginRequiredMixin, DetailView):
     template_name = 'project/details_project.html'
     model = Project
 
