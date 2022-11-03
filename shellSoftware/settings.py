@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'customer',
     'project',
     'task',
-    'userextend'
+    'userextend',
+    'todo'
 ]
 
 MIDDLEWARE = [

@@ -27,5 +27,6 @@ urlpatterns = [
     path('', include('task.urls')),
     path("login/", views.LoginView.as_view(form_class=AuthenticationNewForm), name="login"),
     path('', include('django.contrib.auth.urls')),
-    path('', include('userextend.urls'))
+    path('', include('userextend.urls')),
+    path('', include('todo.urls'))
 ]

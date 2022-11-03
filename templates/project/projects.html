@@ -17,6 +17,7 @@
                 <table class="table table-stripped">
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Project name</th>
                         <th>Customer</th>
                         <th>Start date</th>
@@ -30,6 +31,7 @@
                     <tbody>
                     {% for project in all_projects %}
                         <tr>
+                            <td>{{ project.id }}</td>
                             <td>{{ project.project_name }}</td>
                             <td>{{ project.customer }}</td>
                             <td>{{ project.start_date|date:"d/m/Y" }}</td>

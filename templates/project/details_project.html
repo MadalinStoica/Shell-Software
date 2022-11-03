@@ -6,41 +6,88 @@
 {% block content %}
 
     <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 offset-md-5">
-            <br><br>
-            <a class="btn btn-primary" href="{% url 'new-task-project' project.id %}">New task</a>
-        </div>
-    <div class="row">
-        <div class="col-md-10 offset-md-1">
-        <br> <br>
-            <table class="table table-stripped">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Start date</th>
-                    <th>Deadline</th>
-                    <th>Assigned to</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for task in all_tasks %}
-                    <tr>
-                    <td>{{ task.task_name }}</td>
-                    <td>{{ task.status }}</td>
-                    <td>{{ task.start_date }}</td>
-                    <td>{{ task.deadline }}</td>
-                    <td>{{ task.assignees }}</td>
-                </tr>
-                {% endfor %}
+        <div class="row">
+            <div class="col-md-6 offset-md-5">
+                <br><br>
+                <a class="btn btn-primary" href="{% url 'new-task-project' project.id %}">New task</a>
+            </div>
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <br> <br>
+                    <table class="table table-stripped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Start date</th>
+                            <th>Deadline</th>
+                            <th>Assigned to</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for task in all_tasks %}
+                            <tr>
+                                <td>{{ task.id }}</td>
+                                <td>{{ task.task_name }}</td>
+                                <td>{{ task.status }}</td>
+                                <td>{{ task.start_date }}</td>
+                                <td>{{ task.deadline }}</td>
+                                <td>{{ task.assignees }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-light dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                   href="{% url 'update-task-project' task.id %}">Edit</a></li>
+                                            <!-- Trigger Modal -->
+                                            <li>
+                                                <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#task_{{ task.id }}">
+                                                    Delete
+                                                </button>
+                                            </li>
+{#                                            <li><a class="dropdown-item" href="#">View details</a></li>#}
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="task_{{ task.id }}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete
+                                                - {{ task.task_name }}</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure to delete - {{ task.task_name }}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No
+                                            </button>
+                                            <a href="{% url 'delete-task-modal' task.id %}"
+                                               class="btn btn-danger">Yes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
 
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
 
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
     </div>
 
 {% endblock %}
