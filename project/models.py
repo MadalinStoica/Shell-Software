@@ -6,8 +6,8 @@ from member.models import Member
 
 class Project(models.Model):
 
-    status_options = (('not_started', 'Not Started'), ('in_progress', 'In Progress'), ('on_hold', 'On hold'),
-                      ('cancelled', 'Cancelled'), ('finished', 'Finished'))
+    status_options = (('Not Started', 'Not Started'), ('In Progress', 'In Progress'), ('On hold', 'On hold'),
+                      ('Cancelled', 'Cancelled'), ('Finished', 'Finished'))
 
     project_name = models.CharField(max_length=50)
     status = models.CharField(choices=status_options, max_length=11)
