@@ -28,8 +28,10 @@ class TaskUpdateIntoProjectView(UpdateView):
 
 # de gasit solutie spre directionare project/project_id
 def delete_task_modal(request, pk):
-    Task.objects.filter(id=pk).delete()
-    return redirect(reverse('details_project', kwargs={'pk': pk}))
+    task_to_be_deleted = Task.objects.filter(id=pk).get()
+    project_id = task_to_be_deleted.project_id
+    task_to_be_deleted.delete()
+    return redirect(reverse('details_project', kwargs={'pk': project_id}))
 
 
 
