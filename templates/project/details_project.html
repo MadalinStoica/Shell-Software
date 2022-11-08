@@ -32,8 +32,8 @@
                                 <td>{{ task.id }}</td>
                                 <td>{{ task.task_name }}</td>
                                 <td>{{ task.status }}</td>
-                                <td>{{ task.start_date }}</td>
-                                <td>{{ task.deadline }}</td>
+                                <td>{{ task.start_date|date:"d/m/Y" }}</td>
+                                <td>{{ task.deadline|date:"d/m/Y" }}</td>
                                 <td>{{ task.assignees }}</td>
                                 <td>
                                     <div class="dropdown">

@@ -26,7 +26,6 @@ class TaskUpdateIntoProjectView(UpdateView):
     success_url = '/details_project/{project_id}'
 
 
-# de gasit solutie spre directionare project/project_id
 def delete_task_modal(request, pk):
     task_to_be_deleted = Task.objects.filter(id=pk).get()
     project_id = task_to_be_deleted.project_id
